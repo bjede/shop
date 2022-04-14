@@ -1,0 +1,27 @@
+@import './node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import './node_modules/bootstrap-icons/font/bootstrap-icons.css';
+
+.header {
+    background-color: #7952B3;
+}
+.bi {
+    position: relative;
+}
+.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+    font-size: 32px;
+    filter: invert(1);
+}
+
+.img-container {
+    height: 240px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    max-width: 150px;
+    max-height: 220px;
+    object-fit: contain;
+}
