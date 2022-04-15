@@ -10,7 +10,10 @@ class HTML {
                 <div class="card-body">
                     <h5 class="card-title">${Format.shortenText(product.title, 20)}</h5>
                     <p class="card-text">${Format.shortenText(product.description, 80)}</p>
-                    <a href="#" onclick="event.preventDefault()" class="btn btn-primary">Add to cart</a>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h4 text-primary font-weight-bold">${Format.currency(product.price, '€')}</span>
+                        <a href="#" onclick="event.preventDefault()" class="btn btn-primary">Add to cart</a>
+                    </div>
                 </div>
             </div>
         </div>
