@@ -12,6 +12,24 @@
     filter: invert(1);
 }
 
+#items-count-in-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    padding: 0.4rem;
+    border-radius: 100%;
+    position: absolute;
+    bottom: -10px;
+    left: -11px;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 14px;
+    font-variant: normal;
+    font-style: normal;
+}
+
 .img-container {
     height: 240px;
     overflow: hidden;
@@ -24,4 +42,8 @@ img {
     max-width: 150px;
     max-height: 220px;
     object-fit: contain;
+}
+
+.hide {
+    display: none !important;
 }
