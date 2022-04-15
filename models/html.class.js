@@ -8,9 +8,9 @@ class HTML {
                     <img src="${product.image}" class="card-img-top" alt="...">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" onclick="event.preventDefault()" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">${Format.shortenText(product.title, 20)}</h5>
+                    <p class="card-text">${Format.shortenText(product.description, 80)}</p>
+                    <a href="#" onclick="event.preventDefault()" class="btn btn-primary">Add to cart</a>
                 </div>
             </div>
         </div>
@@ -32,12 +32,21 @@ class HTML {
     }
 
     static renderCart(obj) {
-       
         document.getElementById('cart').innerHTML += `
-            <div>
-            ${obj.amount}  ${obj.title}  ${obj.price.toFixed(2).replace('.',',')}
-            </div>
+                <div class="d-flex justify-content-between">
+                    <span class="pe-md-1">${obj.amount}</span>  
+                    <span class="me-auto">${Format.shortenText(obj.title, 15)} </span> 
+                    <span>${Format.currency(obj.price, '€')}</span>
+                </div>
         `;
+    }
+
+    static show(id) {
+        return document.getElementById(`${id}`).classList.remove('hide');
+    }
+
+    static hide(id) {
+        return document.getElementById(`${id}`).classList.add('hide');
     }
 
 
