@@ -4,21 +4,24 @@ class Cart {
     sumTotal = 0;
     constructor() {
         this.renderCart();
+        this.renderItemsCountInCart();
     }
 
     addItemToCart(item) {
-        if(!this.checkIsItemInCart(item)){
+        if (!this.checkIsItemInCart(item)) {
             this.items.push(item);
             this.firstAmount(item);
-        }else{
+        } else {
             this.updateAmount(item);
         }
         this.calcTotalSum();
         this.renderCart();
         this.renderTotalSum();
+        this.renderItemsCountInCart();
+
     }
 
-    checkIsItemInCart(arr){
+    checkIsItemInCart(arr) {
         return this.items.some(el => el.id == arr.id);
     }
 
@@ -31,7 +34,7 @@ class Cart {
     }
 
     calcTotalSum() {
-       this.sumTotal = this.items.reduce((acc, el) => acc + el.amount * el.price, 0);
+        this.sumTotal = this.items.reduce((acc, el) => acc + el.amount * el.price, 0);
     }
 
     renderTotalSum() {
@@ -48,5 +51,19 @@ class Cart {
         this.items.forEach((element) => {
             HTML.renderCart(element);
         });
+    }
+
+    renderItemsCountInCart() {
+        if (this.itemsCountInCart > 0) {
+            HTML.show('items-count-in-cart');
+            HTML.$id('items-count-in-cart', this.itemsCountInCart);
+        } else {
+            HTML.hide('items-count-in-cart');
+        }
+
+    }
+
+    get itemsCountInCart() {
+        return this.items.length;
     }
 }
