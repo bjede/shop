@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="models/format.class.js"></script>
     <script src="models/html.class.js"></script>
     <script src="models/shop.class.js"></script>
     <script src="models/cart.class.js"></script>
@@ -21,7 +22,7 @@
             </div>
             <div data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i role="button" class="bi bi-basket">
-                    
+                    <span class="hide" id="items-count-in-cart"></span>
                 </i>
             </div>
         </nav>
@@ -51,8 +52,7 @@
         </div>
         <div class="modal-footer">
             <div id="total"></div>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Order</button>
         </div>
       </div>
     </div>
