@@ -11,10 +11,17 @@ async function init() {
 async function loadProducts() {
     let product = await fetch(`https://fakestoreapi.com/products`);
     let responseAsJson = await product.json();
-    console.log(responseAsJson);
     pushToArray(products, responseAsJson);
 }
 
 function pushToArray(arr, product) {
     arr.push(product)
 }
+
+window.addEventListener('scroll', () => {
+    if(window.scrollY > 30){
+        document.querySelector('.header').style = 'position: fixed;';
+    }else{
+        document.querySelector('.header').style = '';
+    }
+});
