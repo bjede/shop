@@ -1,61 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="models/format.class.js"></script>
-    <script src="models/html.class.js"></script>
-    <script src="models/shop.class.js"></script>
-    <script src="models/cart.class.js"></script>
-    <script src="models/placeholder.class.js"></script>
-    <script src="main.js"></script>
-    <title>Shop</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="models/format.class.js"></script>
+  <script src="models/html.class.js"></script>
+  <script src="models/shop.class.js"></script>
+  <script src="models/cart.class.js"></script>
+  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <title>Shop</title>
 </head>
+
 <body onload="init()">
-    <header class="header">
-        <nav class="nav container pt-2 pb-2 mb-4 d-flex align-items-center justify-content-between">
-            <div>
-                <h2>LOGO</h2>
-            </div>
-            <div data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i role="button" class="bi bi-basket">
-                    <span class="hide" id="items-count-in-cart"></span>
-                </i>
-            </div>
-        </nav>
-    </header>
-    <div id="categories">
-
+  <header class="header">
+    <nav class="container d-flex align-items-center justify-content-between">
+      <div>
+        <a href="/">
+          <img class="logo" src="img/logo.png" alt="">
+        </a>
+      </div>
+      <div data-bs-toggle="modal" data-bs-target="#cartModal">
+        <i role="button" class="bi bi-basket">
+          <span class="hide" id="items-count-in-cart"></span>
+        </i>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <div id="carouselDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselDark" data-bs-slide-to="0" class="active" aria-current="true"
+          aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+          <img src="img/pexels-artem-beliaikin-1051744.jpg" class="d-block w-100" alt="">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+          <img src="img/pexels-dellon-thomas-1228626.jpg" class="d-block w-100" alt="">
+        </div>
+        <div class="carousel-item">
+          <img src="img/pexels-andrea-piacquadio-839586.jpg" class="d-block w-100" alt="">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-<div class="container">
+    <div id="categories" class="categories d-flex justify-content-between align-items-center flex-wrap mb-lg-4">
+        <a href="#" class="category col-12 col-sm-12 col-md-12 col-lg-2"
+          onclick="shop.filterProductsByCategory('all', 0)">All</a>
+        <a href="#" class="category col-12 col-sm-6 col-md-3 col-lg-2"
+          onclick="shop.filterProductsByCategory('electronics', 1)">Electronics</a>
+        <a href="#" class="category col-12 col-sm-6 col-md-3 col-lg-2"
+          onclick="shop.filterProductsByCategory('jewelery', 2)">Jewelery</a>
+        <a href="#" class="category col-12 col-sm-6 col-md-3 col-lg-2"
+          onclick="shop.filterProductsByCategory('men\'s clothing', 3)">Men's
+          clothing</a>
+        <a href="#" class="category col-12 col-sm-6 col-md-3 col-lg-2"
+          onclick="shop.filterProductsByCategory('women\'s clothing', 4)">Women's
+          clothing</a>
+    </div>
     <div class="row" id="products">
-        
     </div>
+  </div>
 
-</div>
+  <div id="sum-total"></div>
 
-<div id="sum-total"></div>
-
-<!-- Modal -->
-<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- Modal -->
+  <div class="modal" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Shopping Cart</h5>
+          <h5 class="modal-title" id="modalLabel">Shopping Cart</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div id="cart" class="modal-body">
-          ...
+        <div class="modal-body">
+          <div id="cart"></div>
+          <div id="discount-btn-container"></div>
         </div>
-        <div class="modal-footer">
-            <div id="total"></div>
-          <button type="button" class="btn btn-primary">Order</button>
+        <div class="modal-footer d-flex flex-column align-items-end">
+          <div class="sum-info">
+            <span id="total-text">Total sum: </span>
+            <span id="total">0 €</span>
+          </div>
+          <div id="discount-info" class="hide discount-container">
+            <span id="discount-price"></span>
+          </div>
+
+          <button id="btn" type="button" class="modal-button btn btn-primary">Order</button>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    var myCarousel = document.querySelector('#myCarousel')
+    var carousel = new bootstrap.Carousel(myCarousel)
+  </script>
 </body>
+
 </html>
