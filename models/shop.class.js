@@ -4,17 +4,17 @@ class Shop {
     products = [];
     product;
 
-
     constructor(products, id) {
         this.products = products;
         this.renderShop(id);
     }
 
+    
     renderShop(id) {
         this.cart;
         this.renderProducts();
-        this.showDiscontPrice(id);
     }
+
 
     renderProducts() {
         this.products[0].forEach((product, index) => {
@@ -22,14 +22,21 @@ class Shop {
         });
     }
 
-    addItem(index) {
+
+    addProductToCart(index) {
         this.cart.addItemToCart(this.products[0][index])
-        console.log(parseInt(this.cart.items))
-    }
-
-    showDiscontPrice(id) {
-        this.cart.discountPrice(id);
     }
 
 
+    filterProductsByCategory(product, index){
+        HTML.$id('products', '');
+        HTML.addAciteClass('.category', index)
+        this.products[0].forEach((el, i) => {
+            if(el.category == product){
+              HTML.renderProductCard(el, i)
+            }else if(product == 'all'){
+              HTML.renderProductCard(el, i)
+            }
+        });
+      }
 }
